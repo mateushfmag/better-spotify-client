@@ -1,2 +1,6 @@
 # better-spotify-client
-Spotify with features they should already have created
+
+Mapped Features
+- Playlist viewer with folders. Filesystem like []
+- Public live radios []
+- Chat with friends []
