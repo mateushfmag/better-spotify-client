@@ -1,16 +1,22 @@
 {
   "compilerOptions": {
+    "jsx": "react",
     "outDir": "./dist",
     "module": "commonjs",
     "lib": [
+      "DOM",
       "esnext"
     ],
     "target": "es6",
     "esModuleInterop": true,
     "moduleResolution": "Node",
     "allowJs": true,
-    "baseUrl": ".",
-    "paths": {},
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
     "strictNullChecks": true
   }
 }
