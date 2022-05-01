@@ -25,6 +25,6 @@ module.exports = {
   coverageDirectory: "coverage",
   testEnvironment: "node",
   transform: {
-    ".+\\.ts$": "ts-jest",
+    ".+\\.tsx?$": "ts-jest",
   },
 };

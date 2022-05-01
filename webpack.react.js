@@ -1,16 +1,21 @@
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
   mode: "development",
   entry: "./src/renderer.tsx",
-  target: "electron-renderer",
-  devtool: "source-map",
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "renderer.js",
+    asyncChunks: true,
+  },
+  devtool: "inline-source-map",
   devServer: {
+    historyApiFallback: true,
     static: {
-      directory: path.join(__dirname, "dist/renderer.js"),
+      directory: path.join(__dirname, "dist"),
     },
-    hot: true,
     host: "localhost",
     compress: true,
     port: 9000,
@@ -25,23 +30,22 @@ module.exports = {
     rules: [
       {
         test: /\.tsx?$/,
-        include: /src/,
+        exclude: /node_modules/,
         use: [{ loader: "ts-loader" }],
       },
       {
         test: /\.s[ac]ss$/i,
+        exclude: /node_modules/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
     ],
   },
-  output: {
-    path: __dirname + "/dist",
-    filename: "renderer.js",
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      filename: "index.html",
       inject: true,
     }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 };
